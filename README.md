@@ -10,7 +10,7 @@ mecore là một cấu trúc folder cho các dự án api của Mecorp, mecore b
 
 Sau khi đã install mecore trên commandline, vào nodemodule kéo example/demo.comra ngoài folder dự án chính, trong thư mục example/demo.com là một ví dụ về cách tổ chức file của một dự án thông thường
 
-![Test Image 3](https://github.com/DinhMinhQuang/demo.com/blob/master/images/MecoreFolder.PNG)
+![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/MecoreFolder.PNG)
 
 **AutoLoad**
 
@@ -31,14 +31,13 @@ module.exports = {
 ```
 ------
 *Rule
-Mỗi file khi tạo ở thư mục này cần có đuôi Autoload
+Mỗi file khi tạo ở thư mục này cần có đuôi Autoload + "/n"
 Ví dụ: **TestAutoLoad.js**
 
 **Config**
 
-Bao gồm những file cấu hình của dự án từ cơ sở dữ liệu cho đến các công nghệ đi kèm.
-(insert pic config folder)
-config/env sẽ bao gồm các môi trường trong dự án thực tế như Dev, Sandbox, ...etc
+Bao gồm những file cấu hình của dự án.
+![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
 
 **Constants**
 
