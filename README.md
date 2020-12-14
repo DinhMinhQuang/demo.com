@@ -47,14 +47,14 @@ Bao gồm những file Constants
 
 **Graphql**
 
-Bao gồm những nhưng api hoạt động theo cấu trúc graphql <br/>
+Bao gồm những những api hoạt động theo cấu trúc graphql <br/>
 
 ![Graphql Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/GraphqlFolder.PNG)
 
-*Rule
+*Rule <br/>
 Trong folder **graphql/v1/** phải bao gồm 2 folder typeDefs, resolvers
 
-Folder | Rule
+Thư mục | Quy tắc đặt tên
 ------------ | -------------
 typeDefs | Các file định nghĩa type trong graphql phải là kiểu **.gql**
 resolvers | Các phải trong resolver phải là kiểu **.js**
