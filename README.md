@@ -31,7 +31,7 @@ module.exports = {
 }; 
 ```
 ------
-*Rule
+*Rule <br/>
 Mỗi file khi tạo ở thư mục này cần có đuôi Autoload <br/>
 Ví dụ: **TestAutoLoad.js**
 
@@ -63,14 +63,70 @@ Tài liệu tham khảo về Grapql [link to Graphql!](https://graphql.org/learn
 
 **Hapi**
 
-(insert pic hapi folder
 Bao gồm những api làm theo cấu trúc Restful
-api bao gồm những api chia theo từng chức năng nhỏ của một dự án
-Mỗi chức năng bao gồm Module/Route, nếu tạo thiếu 1 folder, filehound trong mecore sẽ detect về lỗi thiếu file
 
-- Cấu trúc của module phải đi theo ví dụ sau đây (insert pic module)
-- Cấu trúc của route phải đi theo ví dụ sau đây (insert pic route)
-  Nếu cấu trúc file không đúng filehound trong mecore cũng sẽ detect về lỗi
+![Hapi Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/HapiFolder.PNG)
+
+Cấu trúc của hapi là chia nhỏ từng chức năng
+
+*Chức năng
+Khi định nghĩa một chức năng bất kì, folder sẽ bao gồm 2 file Route/Module <br/>
+
+![Function Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/FunctionFolder.PNG)
+
+Ví dụ: 
+Định nghĩa một file Route
+
+```javascript
+const Joi = require('mecore').Joi;
+
+const ResponseCode = require('../../../../../config/ResponseCode');
+
+module.exports = [
+  {
+    method: 'POST', // định nghĩa phương thức
+    path: '/v1/testSecurity', // định nghĩa endpoint
+    handler: require('./Module'), //gọi module xử lý dữ liệu gửi lên api
+    options: {
+      // auth: {  
+      //   strategy: 'DefaultWithPayload', // có thể thay đổi strategy để auth
+      //   payload: true
+      // },
+      auth: false, //Có thể bật/tắt auth bằng cách thay đổi giá trị
+      validate: {
+        payload: Joi.object({
+          username: Joi.string().min(1).max(20).example('11').description('test')
+        }).label('PAYLOAD_TEST') // sử dụng joi để validate các dữ liệu gửi lên api có hợp lệ
+      },
+      tags: ['api', 'internal', 'v1'], //định nghĩa các name tag trong swagger
+      response: { 
+        status: {
+          [ResponseCode.REQUEST_SUCCESS]: Joi.object({
+            test: Joi.string()
+          }).label('TEST_SUCCESS') // định nghĩa các message trả về người dùng
+        }
+      }
+    }
+  }
+];
+```
+
+Định nghĩa một file Module
+
+``` javascript
+module.exports = (request, reply) => {
+    //Viết code ở đây
+  const payload = request.payload; //định nghĩa payload
+  const version = request.pre.apiVersion; 
+  console.log(version);
+  return reply.api({
+    test: request.i18n.__('Client IP {{clientIp}}', { 
+      clientIp: request.clientIp
+    })
+  }).code(1000); //định nghĩa message trả về theo đúng định dạng i18n
+}
+;
+```
 
 **hapi/auth**
 
