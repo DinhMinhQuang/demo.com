@@ -10,7 +10,8 @@ hướng dẫn sử dụng
 
 Sau khi đã install mecore trên commandline, vào nodemodule kéo example/demo.comra ngoài folder dự án chính, trong thư mục example/demo.com là một ví dụ về cách tổ chức file của một dự án thông thường
 
-![Mecore Example](/images/MecoreFolder.png)
+![Mecore Folder](/images/MecoreFolder.png)
+Format: ![Alt Text](url)
 
 AutoLoad
 
