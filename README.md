@@ -1,6 +1,7 @@
 **Install**
-
+```shell
 npm i mecore
+```
 
 **Overview**
 
@@ -38,18 +39,27 @@ Ví dụ: **TestAutoLoad.js**
 
 Bao gồm những file cấu hình của dự án. <br/>
 
-![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
+![Config Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
 
 **Constants**
 
-(insert pic constants folder)
-Bao gồm những biến không đổi được dùng lại nhiều lần
+Bao gồm những file Constants 
 
 **Graphql**
 
-(insert pic graphql folder)
-Bao gồm những nhưng api làm theo cấu trúc graphql
-Để biết thêm thông tin chi tiết bấm vào đây (redirect to Grapql docs)
+Bao gồm những nhưng api hoạt động theo cấu trúc graphql <br/>
+
+![Graphql Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/GraphqlFolder.PNG)
+
+*Rule
+Trong folder **graphql/v1/** phải bao gồm 2 folder typeDefs, resolvers
+
+Folder | Rule
+------------ | -------------
+typeDefs | Các file định nghĩa type trong graphql phải là kiểu **.gql**
+resolvers | Các phải trong resolver phải là kiểu **.js**
+
+Tài liệu tham khảo về Grapql [link to Graphql!](https://graphql.org/learn/)
 
 **Hapi**
 
