@@ -216,9 +216,10 @@ module.exports = {
 };
 ```
 
-\*Rule
+*Rule <br/>
 Mỗi file được định nghĩa trong tasks phải bao gồm **Task** ở cuối mỗi tên file
-Ví dụ:
+
+Ví dụ: <br/>
 **TestTask.js**
 
 **Khởi chạy dự án**
