@@ -30,7 +30,7 @@ module.exports = {
 }; 
 ```
 ------
-#**Rule**
+*Rule
 Mỗi file khi tạo ở thư mục này cần có đuôi Autoload
 Ví dụ: **TestAutoLoad.js**
 
