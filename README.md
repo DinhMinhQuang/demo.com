@@ -6,7 +6,7 @@ npm i mecore
 
 **Overview**
 
-mecore là core hapi sử dụng thư viện hapi để built lại 1 constructor tổ chức code, giúp quản lý dự án thư mục dễ dàng + plugins...etc 
+mecore là core hapi sử dụng thư viện hapi để built lại 1 constructor tổ chức code, giúp quản lý dự án thư mục + plugins...etc 
 
 **Hướng dẫn sử dụng**
 
