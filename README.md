@@ -37,6 +37,7 @@ Ví dụ: **TestAutoLoad.js**
 **Config**
 
 Bao gồm những file cấu hình của dự án.
+
 ![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
 
 **Constants**
