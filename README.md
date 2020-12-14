@@ -6,7 +6,7 @@ npm i mecore
 
 **Overview**
 
-mecore là một cấu trúc folder cho các dự án api của Mecorp, mecore bao gồm các package thiết yếu cho các dự án của payme từ kết nối cơ sở dữ liệu, bảo mật, etc...
+mecore là core hapi sử dụng thư viện hapi để built lại 1 constructor tổ chức code, giúp quản lý dự án thư mục dễ dàng + plugins...etc 
 
 **Hướng dẫn sử dụng**
 
