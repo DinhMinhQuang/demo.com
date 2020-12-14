@@ -31,12 +31,12 @@ module.exports = {
 ```
 ------
 *Rule
-Mỗi file khi tạo ở thư mục này cần có đuôi Autoload + "/n"
+Mỗi file khi tạo ở thư mục này cần có đuôi Autoload <br/>
 Ví dụ: **TestAutoLoad.js**
 
 **Config**
 
-Bao gồm những file cấu hình của dự án.
+Bao gồm những file cấu hình của dự án. <br/>
 
 ![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
 
