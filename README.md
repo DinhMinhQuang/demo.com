@@ -74,7 +74,7 @@ Khi định nghĩa một chức năng bất kì, folder sẽ bao gồm 2 file Ro
 
 ![Function Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/FunctionFolder.PNG)
 
-Ví dụ: 
+Ví dụ: <br/>
 Định nghĩa một file Route
 
 ```javascript
