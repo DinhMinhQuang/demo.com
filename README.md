@@ -15,7 +15,19 @@ Sau khi đã install mecore trên commandline, vào nodemodule kéo example/demo
 **AutoLoad**
 
 Bao gồm các file khởi chạy ngay khi vừa start/restart dự án
-(insert pic autoload folder)
+
+module.exports = {
+  isActive: false,
+  onLoad: () => {
+    //Write Your Function Hear
+    const app = require('..').getInstance();
+    const logger = app.log4js.getLogger('default');
+    logger.info('Test autoload');
+    const __ = app.i18n.__;
+    console.log(__('Test'));
+  }
+}; |
+------
 Mỗi file khi tạo ở thư mục này cần có đuôi Autoload,
 isActive được set default false khi cần tắt chức năng của file này.
 
