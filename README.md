@@ -10,7 +10,7 @@ mecore là một cấu trúc folder cho các dự án api của Mecorp, mecore b
 
 Sau khi đã install mecore trên commandline, vào nodemodule kéo example/demo.comra ngoài folder dự án chính, trong thư mục example/demo.com là một ví dụ về cách tổ chức file của một dự án thông thường
 
-![Mecore Folder](/images/MecoreFolder.png)
+![Mecore Folder](C:\Users\quangdm\Desktop\demo.com\images/MecoreFolder.png)
 
 **AutoLoad**
 
