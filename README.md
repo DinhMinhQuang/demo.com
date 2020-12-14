@@ -228,4 +228,10 @@ Ví dụ: <br/>
 cd examples/demo.com 
 node index.js 
 ```
+Đường dẫn của dự án demo <br/>
+
+```url 
+domain:3000/documentation
+```
+
 
