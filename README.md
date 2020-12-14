@@ -18,11 +18,11 @@ Sau khi đã install mecore, vào node_module kéo example/demo.com trong mecore
 
 Các file được định nghĩa trong AutoLoad sẽ khởi chạy khi start/restart dự án <br/>
 
-Ví dụ: 
+Ví dụ:
 
 ```javascript
 module.exports = {
-  isActive: false, //Tắt/mở function bằng cách thay đổi isActive
+  isActive: false, //Tắt/mở function bằng cách thay đổi giá trị isActive
   onLoad: () => {
     //Viết Code ở đây
     const app = require("..").getInstance();
@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-*Rule <br/>
+\*Rule <br/>
 Mỗi file khi được định nghĩa cần có đuôi Autoload <br/>
 Ví dụ: **TestAutoload.js**
 
@@ -203,7 +203,7 @@ module.exports = {
   isActive: false, //Tắt mở module bằng cách thay đổi giá trị isActive
   expression: "* * * * * */5", //Thời gian định kì được định nghĩa
   options: {
-    timeZone: "Asia/Ho_Chi_Minh", //Thời gian theo vùng 
+    timeZone: "Asia/Ho_Chi_Minh", //Thời gian theo vùng
     runOnInit: false, //Tắt/Mở chức năng chạy khi khởi tạo dự án
     waitingFinish: false, //Tắt/Mở chức năng chờ đợi chức năng
   },
@@ -216,9 +216,20 @@ module.exports = {
 };
 ```
 
-*Rule
+\*Rule
 Mỗi file được định nghĩa trong tasks phải bao gồm **Task** ở cuối mỗi tên file
-Ví dụ: 
+Ví dụ:
 **TestTask.js**
 
-index.js là file để start thử một dự án
+**Khởi chạy dự án**
+
+```shell 
+cd examples/demo.com 
+node index.js 
+```
+
+```url 
+http://localhost:3000/documentation
+```
+
+
