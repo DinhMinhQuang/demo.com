@@ -10,13 +10,15 @@ mecore là một cấu trúc folder cho các dự án api của Mecorp, mecore b
 
 **Hướng dẫn sử dụng**
 
-Sau khi đã install mecore trên commandline, vào nodemodule kéo example/demo.comra ngoài folder dự án chính, trong thư mục example/demo.com là một ví dụ về cách tổ chức file của một dự án thông thường
+Sau khi đã install mecore, vào node_module kéo example/demo.com trong mecore ra ngoài folder dự án chính, trong thư mục example/demo.com là một ví dụ về cách tổ chức file của một dự án thông thường.
 
 ![Mecore Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/MecoreFolder.PNG)
 
 **AutoLoad**
 
-Những file AutoLoad sẽ khởi chạy khi start/restart dự án
+Các file được định nghĩa trong AutoLoad sẽ khởi chạy khi start/restart dự án <br/>
+
+Ví dụ: 
 
 ```javascript
 module.exports = {
@@ -32,11 +34,9 @@ module.exports = {
 };
 ```
 
----
-
-\*Rule <br/>
-Mỗi file khi tạo ở thư mục này cần có đuôi Autoload <br/>
-Ví dụ: **TestAutoLoad.js**
+*Rule <br/>
+Mỗi file khi được định nghĩa cần có đuôi Autoload <br/>
+Ví dụ: **TestAutoload.js**
 
 **Config**
 
@@ -70,10 +70,9 @@ Bao gồm những api làm theo cấu trúc Restful
 
 ![Hapi Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/HapiFolder.PNG)
 
-Cấu trúc của hapi là chia nhỏ từng chức năng
+Mỗi folder được định nghĩa trong **hapi/api/v1/external/** là một chức năng
 
-\*Chức năng
-Khi định nghĩa một chức năng bất kì, folder sẽ bao gồm 2 file Route/Module <br/>
+Khi định nghĩa một chức năng bất kì, folder phải bao gồm 2 file Route/Module <br/>
 
 ![Function Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/FunctionFolder.PNG)
 
@@ -87,15 +86,15 @@ const ResponseCode = require("../../../../../config/ResponseCode");
 
 module.exports = [
   {
-    method: "POST", // định nghĩa phương thức
-    path: "/v1/testSecurity", // định nghĩa endpoint
-    handler: require("./Module"), //gọi module xử lý dữ liệu gửi lên api
+    method: "POST", // Định nghĩa phương thức
+    path: "/v1/testSecurity", // Định nghĩa endpoint
+    handler: require("./Module"), //Gọi module xử lý dữ liệu gửi lên api
     options: {
       // auth: {
-      //   strategy: 'DefaultWithPayload', // có thể thay đổi strategy để auth
+      //   strategy: 'DefaultWithPayload', // Có thể thay đổi strategy để auth
       //   payload: true
       // },
-      auth: false, //Có thể bật/tắt auth bằng cách thay đổi giá trị
+      auth: false, //Bật/Tắt api có cần xác thực hay không
       validate: {
         payload: Joi.object({
           username: Joi.string()
@@ -103,14 +102,14 @@ module.exports = [
             .max(20)
             .example("11")
             .description("test"),
-        }).label("PAYLOAD_TEST"), // sử dụng joi để validate các dữ liệu gửi lên api có hợp lệ
+        }).label("PAYLOAD_TEST"), // Sử dụng joi để validate các dữ liệu gửi lên api
       },
-      tags: ["api", "internal", "v1"], //định nghĩa các name tag trong swagger
+      tags: ["api", "internal", "v1"], //Định nghĩa các name tag trong swagger
       response: {
         status: {
           [ResponseCode.REQUEST_SUCCESS]: Joi.object({
             test: Joi.string(),
-          }).label("TEST_SUCCESS"), // định nghĩa các message trả về người dùng
+          }).label("TEST_SUCCESS"), // Định nghĩa các message trả về phía client
         },
       },
     },
@@ -123,7 +122,7 @@ module.exports = [
 ```javascript
 module.exports = (request, reply) => {
   //Viết code ở đây
-  const payload = request.payload; //định nghĩa payload
+  const payload = request.payload;
   const version = request.pre.apiVersion;
   console.log(version);
   return reply
@@ -154,11 +153,11 @@ options: {
     }
 ```
 
-thì trước khi chạy vào Module, sẽ trỏ xuống strategy tương ứng trong **hapi/auth**, và kiểm tra tính hợp lệ của jwt
+Trước khi luồng đi tới Module, sẽ trỏ xuống **strategy** tương ứng trong **hapi/auth**, và kiểm tra tính hợp lệ của JWT
 
 **Locales**
 
-Khi các message trả về có định dạng
+Các message trả về có định dạng
 
 ```javascript
 return reply
@@ -170,7 +169,7 @@ return reply
   .code(1000);
 ```
 
-message sẽ được ghi vào file locales
+Message trả về sẽ lưu vào file trong locales
 
 **Models**
 
@@ -180,7 +179,7 @@ message sẽ được ghi vào file locales
 
 \*Rule
 
-Các file model phải có đuôi **Model** ở cuối
+Các file model phải có đuôi **Model** ở cuối mỗi file
 
 **Task**
 
