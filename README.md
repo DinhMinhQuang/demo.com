@@ -44,6 +44,204 @@ Bao gồm những file cấu hình của dự án. <br/>
 
 ![Config Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ConfigFolder.PNG)
 
+#**Mongoose.js**
+```javascript 
+module.exports = {
+  default: {
+    uri: 'mongodb://localhost:27017/test',
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    }
+  },
+  common: {
+    uri: 'mongodb://localhost:27017/test1',
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    }
+  }
+};
+
+```
+
+#**Hapi.js**
+```javascript
+const ApolloValidation = require('@profusion/apollo-validation-directives');
+
+module.exports = {
+  isActive: true, 
+  server: {
+    port: 3000, //Config port cho server
+    host: '0.0.0.0', //host
+    routes: {
+      validate: {
+        failAction: (request, h, err) => {
+          throw err; //trả về lỗi 
+        }
+      }
+    }
+  },
+  plugins: { //Các plugin của hapi
+    cors: {
+      isActive: true,
+      options: {
+        headers: []
+      }
+    },
+    jwt: {
+      isActive: true,
+      options: {
+        inject: ['Default', 'Local', 'DefaultWithPayload'], //Các lựa chọn phương thức xác thực khác
+        default: {//Đặt phương thức xác thực default cho api
+          strategy: 'Default',
+          payload: true
+        }
+      }
+    },
+    swagger: {
+      isActive: true,
+      options: {
+        info: {
+          title: 'Test API Documentation', //Tiêu đề của api
+          version: '1.0.1'// phiên bản swagger
+        },
+        grouping: 'tags',
+        tags: [
+          // {
+          //   name: 'external-v2',
+          //   description: 'API nội bộ version 2'
+          // }
+        ],
+        tagsGroupingFilter: (tag) => {
+          return true;
+        },
+        securityDefinitions: { //Định nghĩa các phương thức bảo mật 
+          jwt: {
+            type: 'apiKey',
+            name: 'Authorization',
+            in: 'header'
+          },
+          checksum: {
+            type: 'apiKey',
+            name: 'Checksum',
+            in: 'header'
+          }
+        },
+        security: [
+          {
+            jwt: [],
+            checksum: []
+          }
+        ]
+      }
+    },
+    apiReply: {
+      isActive: true,
+      options: {
+        handleException: (error, request, reply) => {
+          const project = require('../').getInstance();
+          const logger = project.log4js.getLogger('system');
+          logger.error(error);
+          return true;
+        },
+        message: {
+          401: 'Thông tin xác thực không hợp lệ',
+          404: 'Api không tồn tại',
+          500: 'Dịch vụ đang gặp gián đoạn. Vui lòng quay lại sau'
+        }
+      }
+    },
+    apiSecurity: {
+      isActive: false,
+      options: {
+        disableSecurity: { //Tắt phương thức bảo mật 
+          allow: true,
+          secretKey: 'sandbox'
+        },
+        excludeVersion: [],
+        client: {//Định nghĩa key cho client
+          app: {
+            publicKey: '-----BEGIN PUBLIC KEY-----\n' +
+              'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKWcehEELB4GdQ4cTLLQroLqnD3AhdKi\n' +
+              'wIhTJpAi1XnbfOSrW/Ebw6h1485GOAvuG/OwB+ScsfPJBoNJeNFU6J0CAwEAAQ==\n' +
+              '-----END PUBLIC KEY-----',
+            privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
+              'MIIBPAIBAAJBAKWcehEELB4GdQ4cTLLQroLqnD3AhdKiwIhTJpAi1XnbfOSrW/Eb\n' +
+              'w6h1485GOAvuG/OwB+ScsfPJBoNJeNFU6J0CAwEAAQJBAJSfTrSCqAzyAo59Ox+m\n' +
+              'Q1ZdsYWBhxc2084DwTHM8QN/TZiyF4fbVYtjvyhG8ydJ37CiG7d9FY1smvNG3iDC\n' +
+              'dwECIQDygv2UOuR1ifLTDo4YxOs2cK3+dAUy6s54mSuGwUeo4QIhAK7SiYDyGwGo\n' +
+              'CwqjOdgOsQkJTGoUkDs8MST0MtmPAAs9AiEAjLT1/nBhJ9V/X3f9eF+g/bhJK+8T\n' +
+              'KSTV4WE1wP0Z3+ECIA9E3DWi77DpWG2JbBfu0I+VfFMXkLFbxH8RxQ8zajGRAiEA\n' +
+              '8Ly1xJ7UW3up25h9aa9SILBpGqWtJlNQgfVKBoabzsU=\n' +
+              '-----END RSA PRIVATE KEY-----'
+          }
+        }
+      }
+    },
+    apiVersion: { //Phiên bản của api
+      isActive: true,
+      options: {
+        validVersions: [1, 2, 3],
+        defaultVersion: 1,
+        vendorName: 'me'
+      }
+    },
+    apiResponseTime: {//Cấu hình thời gian response
+      isActive: true,
+      options: {}
+    },
+    clientIp: {
+      isActive: true,
+      options: {}
+    },
+    i18n: {//Cấu hình i18n
+      isActive: true,
+      options: {}
+    },
+    graphql: { //Cấu hình graphQl
+      v1: {
+        isActive: true,
+        options: {
+          applyMiddleware: {
+            path: '/graphql', //Đường dấn để mở playground
+            route: {
+              // auth: {  
+              //   strategy: 'Default',
+              //   payload: false
+              // }, // Cài đặt phương thức xác thực
+              auth: false,
+              cors: true
+            }
+          },
+          apolloServer: { //Cấu hình apolloServer
+            typeDefs: [
+              ...ApolloValidation.listLength.getTypeDefs(),
+              ...ApolloValidation.stringLength.getTypeDefs()
+            ],
+            resolvers: [],
+            schemaDirectives: {
+              listLength: ApolloValidation.listLength,
+              stringLength: ApolloValidation.stringLength
+            },
+            context: (hapi) => {
+              return {
+                auth: hapi.request.auth
+              };
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+```
+
 **Constants**
 
 Bao gồm những file Constants
@@ -176,6 +374,32 @@ Message trả về sẽ lưu vào file trong locales
 Đây là nơi định nghĩa các model của dự án <br/>
 
 ![Model Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/ModelFolder.PNG)
+
+Ví dụ: <br/>
+```javascript
+const Schema = require('mecore').Mongoose.Schema;
+
+const Model = {
+  connection: 'default', //Định nghĩa kết nối
+  tableName: 'Test', //Tên bảng
+  autoIncrement: {
+    id: {
+      startAt: 1,
+      incrementBy: 1
+    }
+  },//Định nghĩa id tự động tăng 
+  attributes: new Schema({
+    description: { //Định nghĩa 1 trường trong bảng
+      type: String
+    }
+  }, {
+    timestamps: true
+  })
+};
+
+module.exports = Model;
+
+```
 
 \*Rule
 
