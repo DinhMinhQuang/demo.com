@@ -457,7 +457,8 @@ node index.js
 Đường dẫn của dự án demo <br/>
 
 ```url 
-domain:port/documentation
+domain:port/documentation //open swagger
+domain:port/graphql //open playground
 ```
 
 
