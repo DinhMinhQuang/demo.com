@@ -156,15 +156,15 @@ module.exports = {
         }
       }
     },
-    apiSecurity: {
+    apiSecurity: { //Cấu hình bảo mật RSA cho api 
       isActive: false,
       options: {
-        disableSecurity: { //Tắt phương thức bảo mật 
+        disableSecurity: { 
           allow: true,
           secretKey: 'sandbox'
         },
         excludeVersion: [],
-        client: {//Định nghĩa key cho client
+        client: { 
           app: {
             publicKey: '-----BEGIN PUBLIC KEY-----\n' +
               'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKWcehEELB4GdQ4cTLLQroLqnD3AhdKi\n' +
