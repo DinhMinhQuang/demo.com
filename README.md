@@ -48,8 +48,8 @@ Bao gồm những file cấu hình của dự án. <br/>
 ```javascript 
 module.exports = {
   default: {
-    uri: 'mongodb://localhost:27017/test',
-    options: {
+    uri: 'mongodb://localhost:27017/test', //Địa chỉ trỏ xuống database
+    options: { 
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
@@ -96,7 +96,7 @@ module.exports = {
     jwt: {
       isActive: true,
       options: {
-        inject: ['Default', 'Local', 'DefaultWithPayload'], //Các lựa chọn phương thức xác thực khác
+        inject: ['Default', 'Local', 'DefaultWithPayload'], //Thêm phương thức xác thực
         default: { 
           strategy: 'Default', //Đặt phương thức xác thực default cho api
           payload: true
@@ -252,7 +252,7 @@ Bao gồm những những api hoạt động theo cấu trúc graphql <br/>
 
 ![Graphql Folder](https://github.com/DinhMinhQuang/demo.com/blob/master/images/GraphqlFolder.PNG)
 
-\*Rule <br/>
+*Rule <br/>
 Trong folder **graphql/v1/** phải bao gồm 2 folder typeDefs, resolvers
 
 | Thư mục   | Quy tắc đặt tên                                                 |
@@ -333,7 +333,8 @@ module.exports = (request, reply) => {
 };
 ```
 
-\*Rule <br/>
+
+*Rule <br/>
 Trong folder **hapi/api/v1/external/**, mỗi khi định nghĩa một chức năng, trong mỗi folder chỉ bao gồm 2 file Route và Module
 
 Tài liệu tham khảo về Hapi [link to Hapi!](https://hapi.dev/api/)
@@ -401,7 +402,7 @@ module.exports = Model;
 
 ```
 
-\*Rule
+*Rule
 
 Các file model phải có đuôi **Model** ở cuối mỗi file
 
@@ -439,6 +440,7 @@ module.exports = {
   },
 };
 ```
+Tài liệu tham khảo về Cron [link to Cron!](https://crontab.guru/)
 
 *Rule <br/>
 Mỗi file được định nghĩa trong tasks phải bao gồm **Task** ở cuối mỗi tên file
