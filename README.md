@@ -6,7 +6,7 @@ npm i mecore
 
 **Overview**
 
-Mecore là 1 package sử dụng Hapi là core chính để phát triển, sử dụng thư viện hapi để built lại 1 constructor tổ chức code, giúp quản lý dự án thư mục + plugins...etc 
+Mecore là 1 package sử dụng Hapi là core chính để phát triển, Mecore giúp cho việc tổ chức code, quản lý dự án, thư mục, plugins một cách dễ dàng hơn 
 
 **Hướng dẫn sử dụng**
 
@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-\*Rule <br/>
+*Rule <br/>
 Mỗi file khi được định nghĩa cần có đuôi Autoload <br/>
 Ví dụ: **TestAutoload.js**
 
@@ -97,13 +97,13 @@ module.exports = {
       isActive: true,
       options: {
         inject: ['Default', 'Local', 'DefaultWithPayload'], //Các lựa chọn phương thức xác thực khác
-        default: {//Đặt phương thức xác thực default cho api
-          strategy: 'Default',
+        default: { 
+          strategy: 'Default', //Đặt phương thức xác thực default cho api
           payload: true
         }
       }
     },
-    swagger: {
+    swagger: { //Config swagger
       isActive: true,
       options: {
         info: {
@@ -120,7 +120,7 @@ module.exports = {
         tagsGroupingFilter: (tag) => {
           return true;
         },
-        securityDefinitions: { //Định nghĩa các phương thức bảo mật 
+        securityDefinitions: { //Định nghĩa các phương thức bảo mật dành cho swagger
           jwt: {
             type: 'apiKey',
             name: 'Authorization',
@@ -455,7 +455,7 @@ node index.js
 Đường dẫn của dự án demo <br/>
 
 ```url 
-domain:3000/documentation
+domain:port/documentation
 ```
 
 
